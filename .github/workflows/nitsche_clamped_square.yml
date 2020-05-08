@@ -32,7 +32,7 @@ jobs:
     - name: Run notebook
       run: |
         pip install scikit-fem==1.0.0 jupyter matplotlib
-        jq \'[(.cells[2].outputs[0].data."text/plain"[0]|tonumber), (.cells[4].outputs[0].data."text/plain"[0]|tonumber), (.cells[5].outputs[0].data."text/plain"[0]|tonumber)] | @csv\' nitsche_clamped_square.ipynb -r >> results.csv
+        jq '[(.cells[2].outputs[0].data."text/plain"[0]|tonumber), (.cells[4].outputs[0].data."text/plain"[0]|tonumber), (.cells[5].outputs[0].data."text/plain"[0]|tonumber)] | @csv' nitsche_clamped_square.ipynb -r >> results.csv
         python --version
 
     - uses: actions/upload-artifact@v2
