@@ -32,13 +32,13 @@ jobs:
     - name: Run notebook
       run: |
         pip install scikit-fem==1.0.0 jupyter matplotlib
-        echo "h,nitsche,trad\n" > results.csv
+        echo "h,nitsche,trad" > results.csv
         for NREF in 0 1 2 3
         do
+            echo $NREF
             NREFS=$NREF jupyter nbconvert --to notebook --execute nitsche_clamped_square.ipynb
             jq '[(.cells[2].outputs[0].data."text/plain"[0]|tonumber), (.cells[4].outputs[0].data."text/plain"[0]|tonumber), (.cells[5].outputs[0].data."text/plain"[0]|tonumber)] | @csv' nitsche_clamped_square.ipynb -r >> results.csv
         done
-        echo "\n" >> results.csv
 
     - uses: actions/upload-artifact@v2
       with:
