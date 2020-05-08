@@ -31,5 +31,5 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Run notebook
       run: |
-        pip install scikit-fem=1.0.0 jupyter
+        pip install scikit-fem==1.0.0 jupyter
         python --version
