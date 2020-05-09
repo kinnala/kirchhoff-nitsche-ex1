@@ -32,23 +32,30 @@ jobs:
         NREFS: 0
       run: |
         jupyter nbconvert --to notebook --execute nitsche_clamped_square.ipynb
-        jq '[(.cells[2].outputs[0].data."text/plain"[0]|tonumber), (.cells[4].outputs[0].data."text/plain"[0]|tonumber), (.cells[5].outputs[0].data."text/plain"[0]|tonumber)] | @csv' nitsche_clamped_square.ipynb -r >> results.csv
+        jq '[(.cells[2].outputs[0].data."text/plain"[0]|tonumber), (.cells[4].outputs[0].data."text/plain"[0]|tonumber), (.cells[5].outputs[0].data."text/plain"[0]|tonumber)] | @csv' nitsche_clamped_square.nbconvert.ipynb -r >> results.csv
 
     - name: Run 2
       env:
         NREFS: 1
       run: |
         jupyter nbconvert --to notebook --execute nitsche_clamped_square.ipynb
-        jq '[(.cells[2].outputs[0].data."text/plain"[0]|tonumber), (.cells[4].outputs[0].data."text/plain"[0]|tonumber), (.cells[5].outputs[0].data."text/plain"[0]|tonumber)] | @csv' nitsche_clamped_square.ipynb -r >> results.csv
+        jq '[(.cells[2].outputs[0].data."text/plain"[0]|tonumber), (.cells[4].outputs[0].data."text/plain"[0]|tonumber), (.cells[5].outputs[0].data."text/plain"[0]|tonumber)] | @csv' nitsche_clamped_square.nbconvert.ipynb -r >> results.csv
 
     - name: Run 3
       env:
         NREFS: 2
       run: |
         jupyter nbconvert --to notebook --execute nitsche_clamped_square.ipynb
-        jq '[(.cells[2].outputs[0].data."text/plain"[0]|tonumber), (.cells[4].outputs[0].data."text/plain"[0]|tonumber), (.cells[5].outputs[0].data."text/plain"[0]|tonumber)] | @csv' nitsche_clamped_square.ipynb -r >> results.csv
+        jq '[(.cells[2].outputs[0].data."text/plain"[0]|tonumber), (.cells[4].outputs[0].data."text/plain"[0]|tonumber), (.cells[5].outputs[0].data."text/plain"[0]|tonumber)] | @csv' nitsche_clamped_square.nbconvert.ipynb -r >> results.csv
+
+    - name: Run 4
+      env:
+        NREFS: 3
+      run: |
+        jupyter nbconvert --to notebook --execute nitsche_clamped_square.ipynb
+        jq '[(.cells[2].outputs[0].data."text/plain"[0]|tonumber), (.cells[4].outputs[0].data."text/plain"[0]|tonumber), (.cells[5].outputs[0].data."text/plain"[0]|tonumber)] | @csv' nitsche_clamped_square.nbconvert.ipynb -r >> results.csv
 
     - uses: actions/upload-artifact@v2
       with:
-        name: Results
+        name: ex1
         path: results.csv
