@@ -1,0 +1,9 @@
+version: '2.0'
+services:
+  scikit-fem:
+    image: knlje/scikit-fem:latest
+    command: jupyter notebook
+    ports:
+    - "8888:8888"
+    volumes:
+    - .:/src
