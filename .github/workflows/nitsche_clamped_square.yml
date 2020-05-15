@@ -32,40 +32,28 @@ jobs:
         NREFS: 0
       run: |
         jupyter nbconvert --to notebook --execute nitsche_clamped_square.ipynb
-        jq -r '.cells[2].outputs[1].data."image/png"' nitsche_clamped_square.nbconvert.ipynb | base64 -d > ex1_mesh_0.png
-        jq -r '.cells[4].outputs[1].data."image/png"' nitsche_clamped_square.nbconvert.ipynb | base64 -d > ex1_nitsche_0.png
-        jq -r '.cells[5].outputs[1].data."image/png"' nitsche_clamped_square.nbconvert.ipynb | base64 -d > ex1_traditional_0.png
-        jq '[(.cells[2].outputs[0].data."text/plain"[0]|tonumber), (.cells[4].outputs[0].data."text/plain"[0]|tonumber), (.cells[5].outputs[0].data."text/plain"[0]|tonumber), (.cells[6].outputs[0].data."text/plain"[0]|tonumber), (.cells[8].outputs[0].data."text/plain"[0]|tonumber), (.cells[9].outputs[0].data."text/plain"[0]|tonumber)] | @csv' nitsche_clamped_square.nbconvert.ipynb -r >> ex1results.csv
+        sh extract.sh $NREFS
 
     - name: Run 2
       env:
         NREFS: 1
       run: |
         jupyter nbconvert --to notebook --execute nitsche_clamped_square.ipynb
-        jq -r '.cells[2].outputs[1].data."image/png"' nitsche_clamped_square.nbconvert.ipynb | base64 -d > ex1_mesh_1.png
-        jq -r '.cells[4].outputs[1].data."image/png"' nitsche_clamped_square.nbconvert.ipynb | base64 -d > ex1_nitsche_1.png
-        jq -r '.cells[5].outputs[1].data."image/png"' nitsche_clamped_square.nbconvert.ipynb | base64 -d > ex1_traditional_1.png
-        jq '[(.cells[2].outputs[0].data."text/plain"[0]|tonumber), (.cells[4].outputs[0].data."text/plain"[0]|tonumber), (.cells[5].outputs[0].data."text/plain"[0]|tonumber), (.cells[6].outputs[0].data."text/plain"[0]|tonumber), (.cells[8].outputs[0].data."text/plain"[0]|tonumber), (.cells[9].outputs[0].data."text/plain"[0]|tonumber)] | @csv' nitsche_clamped_square.nbconvert.ipynb -r >> ex1results.csv
+        sh extract.sh $NREFS
 
     - name: Run 3
       env:
         NREFS: 2
       run: |
         jupyter nbconvert --to notebook --execute nitsche_clamped_square.ipynb
-        jq -r '.cells[2].outputs[1].data."image/png"' nitsche_clamped_square.nbconvert.ipynb | base64 -d > ex1_mesh_2.png
-        jq -r '.cells[4].outputs[1].data."image/png"' nitsche_clamped_square.nbconvert.ipynb | base64 -d > ex1_nitsche_2.png
-        jq -r '.cells[5].outputs[1].data."image/png"' nitsche_clamped_square.nbconvert.ipynb | base64 -d > ex1_traditional_2.png
-        jq '[(.cells[2].outputs[0].data."text/plain"[0]|tonumber), (.cells[4].outputs[0].data."text/plain"[0]|tonumber), (.cells[5].outputs[0].data."text/plain"[0]|tonumber), (.cells[6].outputs[0].data."text/plain"[0]|tonumber), (.cells[8].outputs[0].data."text/plain"[0]|tonumber), (.cells[9].outputs[0].data."text/plain"[0]|tonumber)] | @csv' nitsche_clamped_square.nbconvert.ipynb -r >> ex1results.csv
+        sh extract.sh $NREFS
 
     - name: Run 4
       env:
         NREFS: 3
       run: |
         jupyter nbconvert --to notebook --execute nitsche_clamped_square.ipynb
-        jq -r '.cells[2].outputs[1].data."image/png"' nitsche_clamped_square.nbconvert.ipynb | base64 -d > ex1_mesh_3.png
-        jq -r '.cells[4].outputs[1].data."image/png"' nitsche_clamped_square.nbconvert.ipynb | base64 -d > ex1_nitsche_3.png
-        jq -r '.cells[5].outputs[1].data."image/png"' nitsche_clamped_square.nbconvert.ipynb | base64 -d > ex1_traditional_3.png
-        jq '[(.cells[2].outputs[0].data."text/plain"[0]|tonumber), (.cells[4].outputs[0].data."text/plain"[0]|tonumber), (.cells[5].outputs[0].data."text/plain"[0]|tonumber), (.cells[6].outputs[0].data."text/plain"[0]|tonumber), (.cells[8].outputs[0].data."text/plain"[0]|tonumber), (.cells[9].outputs[0].data."text/plain"[0]|tonumber)] | @csv' nitsche_clamped_square.nbconvert.ipynb -r >> ex1results.csv
+        sh extract.sh $NREFS
 
     - uses: actions/upload-artifact@v2
       with:
