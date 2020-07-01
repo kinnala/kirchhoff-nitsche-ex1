@@ -1,0 +1,2 @@
+matplotlib==3.2.1
+scikit-fem==1.0.0
