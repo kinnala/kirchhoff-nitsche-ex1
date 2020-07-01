@@ -1,8 +1,0 @@
-* Clamped square plate
-
-A numerical example for the paper /Nitsche's method for Kirchhoff plates/ by Tom
-Gustafsson, Rolf Stenberg, and Juha Videman.
-
-The example is run by Github Actions and the resulting figures are collected as
-a build artifact.  See the directory .github/workflows/ for instructions on
-running the code yourself.
